@@ -16,6 +16,8 @@ struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCharacterDied, APortfolioCharacter*, Character);
+
 UCLASS(config=Game)
 class APortfolioCharacter : public ACharacter
 {
@@ -48,6 +50,8 @@ class APortfolioCharacter : public ACharacter
 public:
 	APortfolioCharacter();
 	
+	// 캐릭터 사망 시 Delegate Event
+	FOnCharacterDied OnCharacterDied;
 
 protected:
 

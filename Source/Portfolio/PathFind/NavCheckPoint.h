@@ -48,12 +48,6 @@ class PORTFOLIO_API ANavCheckPoint : public AActor
 public:	
 	ANavCheckPoint();
 
-	//UFUNCTION(BlueprintCallable, Category = Tool)
-	//void SetDirtyExternalActor();
-
-	//UFUNCTION(BlueprintCallable, Category = Tool)
-	//void SaveExternalActor();
-
 protected:
 	virtual void BeginPlay() override;
 	
