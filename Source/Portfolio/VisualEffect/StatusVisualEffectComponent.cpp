@@ -136,15 +136,15 @@ TSubclassOf<AStatusVisualEffect> UStatusVisualEffectComponent::GetDebuffEffectRe
 	return TSubclassOf<AStatusVisualEffect>();
 }
 
-void UStatusVisualEffectComponent::OnSpawnedNewIcon(skill_condition_terms_id debuffType, UNiagaraComponent* loadedNiagaraComp)
+void UStatusVisualEffectComponent::OnSpawnedNewIcon(skill_condition_terms_id DebuffType, UNiagaraComponent* LoadedNiagaraComp)
 {
-	if (!loadedNiagaraComp || debuffType == skill_condition_terms_id::SCTI_ZERO)
+	if (!LoadedNiagaraComp || DebuffType == skill_condition_terms_id::SCTI_ZERO)
 	{
 		return;
 	}
 
-	IconSequence.Emplace(debuffType);
-	SpawnedIconEffects.Emplace(debuffType, loadedNiagaraComp);
+	IconSequence.Emplace(DebuffType);
+	SpawnedIconEffects.Emplace(DebuffType, LoadedNiagaraComp);
 
 	RelocateIconEffect();
 }

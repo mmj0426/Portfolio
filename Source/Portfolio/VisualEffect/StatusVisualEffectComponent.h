@@ -18,6 +18,7 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 protected:
 	// 중첩 상태일 때 아이콘과 아이콘 사이의 거리
@@ -38,8 +39,7 @@ protected:
 	FRotator LastCharacterRotation = FRotator::ZeroRotator;
 	FVector LastCameraLocation = FVector::ZeroVector;
 
-	UPROPERTY() 
-	FFCGate RotateIconGate;
+	UPROPERTY() FFCGate RotateIconGate;
 
 	void OnRotateIconGate();
 	void OpenRotateIconGate();
@@ -47,7 +47,6 @@ protected:
 	void CheckRotateIconGate();
 
 public :  
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void SpawnEffectActor(skill_condition_terms_id skillConditionType);
 	void RelocateIconEffect();
@@ -55,7 +54,7 @@ public :
 	void DestroyAllEffect();
 
 	UFUNCTION() void OnOwnCharacterDie(class APortfolioCharacter* Character);
-	UFUNCTION() void OnSpawnedNewIcon(skill_condition_terms_id debuffType, UNiagaraComponent* loadedNiagaraComp);
+	UFUNCTION() void OnSpawnedNewIcon(skill_condition_terms_id DebuffType, UNiagaraComponent* LoadedNiagaraComp);
 
 	TSoftObjectPtr<UTexture> GetEffectDiffuseTexture(skill_condition_terms_id skillConditionType) const;
 	TSubclassOf<class AStatusVisualEffect> GetDebuffEffectResource(skill_condition_terms_id type) const;

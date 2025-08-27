@@ -26,6 +26,8 @@ struct FStatusVisualEffectData
 {
 	GENERATED_USTRUCT_BODY()
 
+public :
+
 	// 출력할 이펙트
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSoftObjectPtr<class UNiagaraSystem> NiagaraEffect;
@@ -56,12 +58,10 @@ public:
 	void InitEffectActor(TWeakObjectPtr<class APortfolioCharacter> Character, TWeakObjectPtr<class USceneComponent> iconSceneComp);
 
 public:	
-	FORCEINLINE bool IsValidIconEffect()const { return !(IconEffect.NiagaraEffect.IsNull()); }
-
-	const FVector GetSpawnLocationByType(EStatusVisualEffectSpawnLocType spawnLocType) const;
-
+	// Bind Function
 	// Niagara 비동기 로드 완료 시 바인딩
 	void OnLoadedNiagaraAsset(TObjectPtr<UObject> NiagaraAsset, FStatusVisualEffectData Data, bool isIcon);
+	UFUNCTION() void OnOwnCharacterDie(class APortfolioCharacter* Character);
 
 	void ActiveDebuffEffect(skill_condition_terms_id ActiveConditionType);
 	void ApplyDebuffEffectHUD(bool IsActive);
@@ -70,10 +70,11 @@ public:
 	void StopAnimation();
 	void StopAnimation_Implementation();
 
+	FORCEINLINE bool IsValidIconEffect()const { return !(IconEffect.NiagaraEffect.IsNull()); }
+	const FVector GetSpawnLocationByType(EStatusVisualEffectSpawnLocType spawnLocType) const;
 	FORCEINLINE TSoftObjectPtr<UTexture> GetEffectDiffuseTexture()const { return EffectDiffuseTexture; }
 
 protected:
-	UFUNCTION() void OnOwnCharacterDie(class APortfolioCharacter* Character);
 
 	UPROPERTY() TWeakObjectPtr<class APortfolioCharacter> OwnerCharacter;
 	UPROPERTY() TWeakObjectPtr<USceneComponent> IconEffectSceneComp;

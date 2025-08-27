@@ -9,7 +9,7 @@ public class Portfolio : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
         PublicIncludePaths.AddRange(new string[] {"Portfolio"});
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "NavigationSystem", "GameplayAbilities", "GameplayTags", "GameplayTasks", "Niagara" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "NavigationSystem", "GameplayAbilities", "GameplayTags", "GameplayTasks", "Niagara", "UMG" });
 
 
     }
